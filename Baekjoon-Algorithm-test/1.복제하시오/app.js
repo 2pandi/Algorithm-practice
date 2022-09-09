@@ -10,7 +10,7 @@ console.log(input);
 
 let fs = require('fs');
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().split("\n");
+let input = fs.readFileSync(filePath).toString().split("\n").map(v => v.split(' ').map(v => +v));
 
 console.log(input);
 //🟢여러 줄인 경우
