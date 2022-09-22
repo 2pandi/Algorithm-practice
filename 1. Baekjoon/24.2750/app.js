@@ -7,6 +7,10 @@ let [N, ...arr] = input;
 
 arr = arr.sort((a, b) => a - b);
 
-for(let i = 0; i < N; i++){
-    console.log(arr[i]);
-}
+console.log(arr.join('\n'));
+
+
+// 일일이 console.log 찍는거 느림
+// for문으로 result += 하는 거 느림
+// join으로 합치고 한번에 console.log 하는 것이 더 빠름
+// 퀵정렬 등의 알고리즘이 제일 빠름
