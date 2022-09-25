@@ -1,3 +1,4 @@
+// 내장 메서드 활용
 let fs = require('fs');
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 
