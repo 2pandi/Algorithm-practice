@@ -20,6 +20,7 @@ class SinglyLinkedList {
     this.length++;
   }
 
+  // 내 코드
   // pop() {
   //   if (!this.length) return;
   //   let current = this.head,
@@ -36,6 +37,7 @@ class SinglyLinkedList {
   //   return popped;
   // }
 
+  // 샘 코드
   pop() {
     if (!this.head) return;
     let current = this.head;
@@ -98,9 +100,86 @@ class SinglyLinkedList {
     }
     return false;
   }
+
+  // 내 코드
+  insert(index, val) {
+    if (index === 0) {
+      this.unshift(val);
+      return true;
+    }
+    const preNode = this.get(index - 1);
+    if (!preNode) return false;
+    const node = new Node(val);
+    node.next = preNode.next;
+    preNode.next = node;
+    this.length++;
+    return true;
+  }
+
+  // 샘 코드
+  // insert(index, val) {
+  //   if (index < 0 || index > this.length) return false;
+  //   if (index === this.length) return !!this.push(val);
+  //   if (index === 0) return !!this.unshift(val);
+
+  //   const newNode = new Node(val);
+  //   const prev = this.get(index - 1);
+  //   const temp = prev.next;
+  //   prev.next = newNode;
+  //   newNode.next = temp;
+  //   this.length++;
+  //   return true;
+  // }
+
+  remove(index) {
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    const preNode = this.get(index - 1);
+    if (!preNode) return null;
+    const removed = preNode.next;
+    preNode.next = removed.next;
+    removed.next = null;
+    this.length--;
+    return removed;
+  }
+
+  // 샘 코드
+  // remove(index) {
+  //   if (index < 0 || index >= this.length) return null;
+  //   if (index === 0) return this.shift();
+  //   if (index === this.length - 1) return this.pop();
+  //   const prev = this.get(index - 1);
+  //   const removed = prev.next;
+  //   prev.next = removed.next;
+  //   this.length--;
+  //   return removed;
+  // }
+
+  reverse() {
+    const node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null,
+      next;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
-list.push("hello");
-list.push("goodbye");
-list.push("!");
+list.push("a");
+list.push("b");
+list.push("c");
+list.push("d");
+list.push("e");
+
+// Big O(시간복잡도)
+// Insertion: O(1)
+// Removal: shift - O(1) or pop - O(N)
+// Searching: O(N)
+// Access: O(N)
