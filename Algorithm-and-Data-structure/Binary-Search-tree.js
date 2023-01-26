@@ -65,6 +65,56 @@ class BinarySearchTree {
     }
     return false;
   }
+
+  BFS() {
+    let node = this.root,
+      data = [],
+      queue = [];
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data;
+  }
+
+  DFSPreOrder() {
+    let current = this.root,
+      data = [];
+    function traverse(node) {
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(current);
+    return data;
+  }
+
+  DFSPostOrder() {
+    let current = this.root,
+      data = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value);
+    }
+    traverse(current);
+    return data;
+  }
+
+  DFSInOrder() {
+    let current = this.root,
+      data = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(current);
+    return data;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -75,14 +125,11 @@ tree.insert(11);
 tree.insert(2);
 tree.insert(16);
 tree.insert(7);
-tree.find(5);
-tree.contains(5);
-// console.log(tree.contains(5));
+// tree.find(5);
+// tree.contains(5);
 
 /**
  *      10
  *   5      13
  * 2   7  11  16
  */
-
-// console.log("end");
